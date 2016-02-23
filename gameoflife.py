@@ -12,3 +12,7 @@ class GameOfLife(object):
 
     def is_alive(self, cell):
         return cell in self.alive_cells
+
+    def alive_neighbours(self, cell):
+        return [neighbour for neighbour in neighbours(cell)
+                if self.is_alive(neighbour)]

@@ -6,10 +6,25 @@ def neighbours(cell):
             (x-1, y),             (x+1, y),
             (x-1, y+1), (x, y+1), (x+1, y+1)]
 
+
+def gameoflife(initial_cells=[]):
+    current_step = GameOfLifeStep(initial_cells)
+    while True:
+        yield current_step
+        current_step = current_step.next_step()
+
+
 class GameOfLifeStep(object):
 
     def __init__(self, alive_cells=[]):
         self.alive_cells = alive_cells
+
+    def __eq__(self, other):
+        return (isinstance(other, self.__class__)
+            and self.alive_cells == other.alive_cells)
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
     def is_alive(self, cell):
         return cell in self.alive_cells

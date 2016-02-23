@@ -75,3 +75,18 @@ def test_next_dead_cell_with_3_alive_neighbours_becomes_alive():
     next_step = step.next_step()
     assert_in((1,0), next_step.alive_cells)
     assert_in((1,2), next_step.alive_cells)
+
+def test_gameoflife_should_first_return_initial_step():
+    initial_cells = [(0,1), (1,1)]
+    assert_equal(
+        next(gameoflife(initial_cells)),
+        GameOfLifeStep(alive_cells=initial_cells)
+    )
+
+def test_gameoflife_should_return_next_steps():
+    initial_cells = [(0,1), (1,1)]
+    initial_step = GameOfLifeStep(initial_cells)
+    next_step = initial_step.next_step()
+    game = gameoflife(initial_cells)
+    next(game) # Skip initial step
+    assert next(game) == next_step

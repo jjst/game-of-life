@@ -1,3 +1,4 @@
+import itertools
 from nose.tools import *
 from gameoflife import *
 
@@ -24,3 +25,16 @@ def test_alive_neighbours():
         game_of_life.alive_neighbours((1,1)),
         [(1,2),(2,0)]
     )
+
+def test_zombie_cells_are_neighbours():
+    game_of_life = GameOfLife(alive_cells=[(1,2),(2,0),(3,2)])
+    all_neighbours = list(itertools.chain.from_iterable(
+        [neighbours((1,2)), neighbours((2,0)), neighbours((3,2))]
+    ))
+    assert all(zombie in all_neighbours
+               for zombie in game_of_life.zombie_cells())
+
+def test_zombie_cells_are_all_dead():
+    game_of_life = GameOfLife(alive_cells=[(1,2),(2,0),(3,2)])
+    assert all(not game_of_life.is_alive(zombie)
+               for zombie in game_of_life.zombie_cells())

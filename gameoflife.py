@@ -1,3 +1,4 @@
+import itertools
 
 def neighbours(cell):
     x, y = cell
@@ -16,3 +17,14 @@ class GameOfLife(object):
     def alive_neighbours(self, cell):
         return [neighbour for neighbour in neighbours(cell)
                 if self.is_alive(neighbour)]
+
+    def zombie_cells(self):
+        """
+        Return the list of zombie cells.
+
+        Zombie cells are cells that might become alive at the next iteration.
+        Those cells are composed of all the cells that have at least
+        one alive neighbour and aren't currently alive."""
+        all_neighbours = set(itertools.chain.from_iterable(
+            [neighbours(cell) for cell in self.alive_cells]))
+        return all_neighbours - set(self.alive_cells)

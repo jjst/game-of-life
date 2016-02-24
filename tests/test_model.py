@@ -1,6 +1,6 @@
 import itertools
 from nose.tools import *
-from gameoflife import *
+from gameoflife.model import *
 
 def test_is_alive_alive_cell():
     step = GameOfLifeStep(alive_cells=[(1,2),(3,4)])

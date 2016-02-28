@@ -1,6 +1,8 @@
 import pygame, sys
 from pygame.locals import *
 from model import gameoflife
+import lexicon as lex
+import sys
 
 next_step_event = pygame.USEREVENT + 1
 refresh_rate_ms = 1000
@@ -14,7 +16,10 @@ cell_border = black
 width, height = 900, 600
 
 def main():
-    game_of_life = gameoflife(initial_cells=[(1,1),(1,2),(1,3)])
+    with open('./lexicon.txt', 'r') as f:
+        lexicon_text = f.read()
+        lexicon = lex.parse(lexicon_text)
+    game_of_life = gameoflife(initial_cells=lexicon[sys.argv[1]].cells)
     state = next(game_of_life)
 
     pygame.init()

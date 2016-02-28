@@ -2,7 +2,7 @@ from collections import namedtuple
 import re
 
 lexicon_regex = re.compile(
-    r":(.+):\s*(.*)$((?:\s+[\.\*]+$)+)",
+    r":(.+):\s*((?:.+\n)+?)((?:\s+[\.\*]+$)+)\n",
     flags=re.MULTILINE)
 
 def cells_from_text_pattern(pattern, dead_cell='.', alive_cell='*'):
@@ -20,6 +20,8 @@ def parse(lexicon_text):
     matches = lexicon_regex.finditer(lexicon_text)
     for match in matches:
         name, description, cells_as_text = match.groups()
+        description = " ".join(
+            s.strip() for s in description.strip().splitlines())
         text_pattern = [l.strip() for l in cells_as_text.strip().splitlines()]
         item = LexiconItem(
             name,

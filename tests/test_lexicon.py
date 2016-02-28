@@ -44,12 +44,12 @@ def test_parse_lexicon():
 """
     gameoflife_lexicon = lexicon.parse(test_content)
     assert len(gameoflife_lexicon) == 2
-    assert_equals(gameoflife_lexicon[0], LexiconItem(
+    assert_equals(gameoflife_lexicon['beehive'], LexiconItem(
         name="beehive",
         description="(p1)  The second most common {still life}.",
         cells=[(1,0), (2,0), (0,1), (3,1), (1,2), (2,2)]
     ))
-    assert_equals(gameoflife_lexicon[1], LexiconItem(
+    assert_equals(gameoflife_lexicon['bi-block'], LexiconItem(
         name="bi-block",
         description="(p1)  The smallest {pseudo still life}.",
         cells=[(0,0), (1,0), (3,0), (4,0), (0,1), (1,1), (3,1), (4,1)]

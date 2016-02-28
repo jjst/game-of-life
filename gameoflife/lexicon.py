@@ -16,7 +16,7 @@ def cells_from_text_pattern(pattern, dead_cell='.', alive_cell='*'):
     return alive_cells
 
 def parse(lexicon_text):
-    lexicon = []
+    lexicon = dict()
     matches = lexicon_regex.finditer(lexicon_text)
     for match in matches:
         name, description, cells_as_text = match.groups()
@@ -25,7 +25,7 @@ def parse(lexicon_text):
             name,
             description,
             cells_from_text_pattern(text_pattern))
-        lexicon.append(item)
+        lexicon[name] = item
     return lexicon
 
 LexiconItem = namedtuple('LexiconItem', ['name', 'description', 'cells'])

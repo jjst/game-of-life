@@ -24,6 +24,7 @@ def main():
         figure_name = sys.argv[1]
     except IndexError:
         print_usage()
+
     game_of_life = gameoflife(initial_cells=lexicon[sys.argv[1]].cells)
     state = next(game_of_life)
 
@@ -33,6 +34,8 @@ def main():
     pygame.time.set_timer(next_step_event, refresh_rate_ms)
 
     screen = pygame.display.set_mode((width, height), 0, 32)
+    # Set window title
+    pygame.display.set_caption("Game Of Life")
 
     while True:
         for event in pygame.event.get():

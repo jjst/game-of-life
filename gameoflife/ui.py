@@ -5,7 +5,7 @@ import lexicon as lex
 import sys
 
 next_step_event = pygame.USEREVENT + 1
-refresh_rate_ms = 1000
+refresh_rate_ms = 500
 
 white = (255,255,255)
 black = (0,0,0)
@@ -27,7 +27,7 @@ def main():
     # Program the next step event to trigger repeatedly.
     pygame.time.set_timer(next_step_event, refresh_rate_ms)
 
-    screen = pygame.display.set_mode((width, height),0,32)
+    screen = pygame.display.set_mode((width, height), 0, 32)
 
     while True:
         for event in pygame.event.get():

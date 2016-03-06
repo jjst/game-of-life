@@ -6,6 +6,8 @@ Python using [Pygame](http://www.pygame.org/).
 
 It loads and displays figures from the [Life Lexicon](http://www.argentum.freeserve.co.uk/lex_home.htm).
 
+![Sample run](https://i.imgur.com/WeMmh6E.gif)
+
 Requirements 
 ------------
 
